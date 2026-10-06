@@ -35,7 +35,7 @@ function SectionModels() {
         <div className="section-head">
           <div>
             <p className="eyebrow">Gama de modelos</p>
-            <TextUpScroll className="section-title" text="Encuentra tu próximo auto." />
+            <TextUpScroll className="section-title cond" text="Encuentra tu próximo auto." />
           </div>
           <div className="carousel-arrows">
             <button className="arrow" onClick={() => scrollBy(-1)} disabled={edges.start} aria-label="Anterior">
@@ -81,8 +81,8 @@ function SectionModels() {
                 ))}
               </dl>
               <div className="btn-row">
-                <a href="#destacados" className="btn btn-primary btn-sm">Descubrir</a>
-                <a href="#servicios" className="link-arrow">Configurar</a>
+                <a href="#mercedes" className="btn-pill">Descubrir</a>
+                <a href="#contacto" className="link-arrow">Configurar</a>
               </div>
             </div>
           </article>

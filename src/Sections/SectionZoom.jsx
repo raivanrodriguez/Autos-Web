@@ -1,25 +1,21 @@
 import TextUpScroll from "../Components/TextUpScroll";
 
-// Banner dividido: imagen con zoom al pasar el mouse + texto
+const unsplash = (id) => `https://images.unsplash.com/photo-${id}?w=1400&q=80&auto=format&fit=crop`;
+
+// Bloque negro estilo "Milestones": titular grande + imagen con zoom al pasar el mouse
 function SectionZoom() {
   return (
-    <section className="section split">
-      <div className="container split-inner">
-        <div className="split-media hover-inner">
-          <div className="mask">
-            <img src="/Auto/Lambor/1.png" alt="Lamborghini Huracán STO en estudio" loading="lazy" />
-          </div>
+    <section id="hitos" className="milestone">
+      <div className="container milestone-inner">
+        <div className="milestone-copy">
+          <p className="eyebrow">Hitos</p>
+          <TextUpScroll className="milestone-title cond" text="Recorre con nosotros 140 años de historia." />
+          <p className="milestone-kicker">140 años. 140 lugares.</p>
+          <a href="#modelos" className="btn-pill">Explorar más</a>
         </div>
-        <div className="split-copy">
-          <p className="eyebrow">Prueba de manejo</p>
-          <TextUpScroll className="section-title" text="Siéntelo antes de decidir." />
-          <p className="lead">
-            Reserva una prueba de manejo en el concesionario más cercano. Te acompañamos en cada
-            kilómetro para que descubras de qué es capaz tu próximo auto.
-          </p>
-          <div className="btn-row">
-            <a href="#servicios" className="btn btn-primary">Reservar ahora</a>
-            <a href="#modelos" className="btn btn-ghost">Ver modelos</a>
+        <div className="milestone-media hover-inner hover-card">
+          <div className="mask">
+            <img src={unsplash("1544636331-e26879cd4d9b")} alt="Bugatti Chiron plateado de frente" loading="lazy" />
           </div>
         </div>
       </div>

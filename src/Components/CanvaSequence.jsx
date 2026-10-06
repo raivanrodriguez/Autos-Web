@@ -16,7 +16,7 @@ function CanvasSequence({ framePath, frameCount = 30, eyebrow, title, text, alig
         <div className="sequence-copy container">
           <div className="sequence-copy-inner">
             {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-            <h2 className="sequence-title">{title}</h2>
+            <h2 className="sequence-title cond">{title}</h2>
             {text && <p className="sequence-text">{text}</p>}
           </div>
         </div>

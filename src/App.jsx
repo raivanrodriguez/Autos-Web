@@ -4,11 +4,11 @@ import Hero from "./Components/Hero";
 import Video from "./Components/Video";
 import CanvasSequence from "./Components/CanvaSequence";
 import Footer from "./Components/Footer";
+import SectionMercedes from "./Sections/SectionMercedes";
 import SectionModels from "./Sections/SectionModels";
 import SectionPainting from "./Sections/SectionPainting";
-import SectionHighlights from "./Sections/SectionHighlights";
 import SectionZoom from "./Sections/SectionZoom";
-import SectionServices from "./Sections/SectionServices";
+import SectionFollow from "./Sections/SectionFollow";
 
 function App() {
   return (
@@ -16,9 +16,18 @@ function App() {
       <Header />
       <main>
         <Hero />
-        <SectionModels />
-        <SectionPainting />
+        <SectionMercedes />
+        <SectionZoom />
         <Video />
+        <SectionPainting />
+        <CanvasSequence
+          framePath="/Auto/porshe/frame_"
+          frameCount={19}
+          eyebrow="Porsche Taycan Cross Turismo"
+          title="Sin límites de terreno."
+          text="Tracción integral eléctrica para llevar el rendimiento más allá del asfalto."
+        />
+        <SectionModels />
         <CanvasSequence
           framePath="/Auto/bugati/spoiler 1/frame_"
           frameCount={17}
@@ -26,18 +35,16 @@ function App() {
           title="Aerodinámica activa."
           text="El alerón trasero se despliega en milisegundos para mantener el auto pegado al asfalto."
         />
-        <SectionHighlights />
         <CanvasSequence
-          framePath="/Auto/porshe/frame_"
-          frameCount={19}
-          eyebrow="Porsche Taycan Cross Turismo"
-          title="Sin límites de terreno."
-          text="Tracción integral eléctrica para llevar el rendimiento más allá del asfalto."
+          framePath="/Auto/bugati/spoiler 2/frame_"
+          frameCount={22}
+          eyebrow="Modo Top Speed"
+          title="Freno de aire."
+          text="Al frenar, el alerón se inclina y actúa como un paracaídas a más de 400 km/h."
           align="right"
         />
-        <SectionZoom />
-        <SectionServices />
       </main>
+      <SectionFollow />
       <Footer />
     </>
   );

@@ -13,12 +13,11 @@ function Hero() {
       // Enciende los faros: fundido entre las dos fotos
       gsap.to(".hero-img-on", { opacity: 1, duration: 1.4, delay: 1.2, ease: "power2.inOut" });
 
-      gsap.from(".hero-fade", { y: 24, opacity: 0, duration: 1, stagger: 0.12, delay: 0.6, ease: "power3.out" });
+      gsap.from(".hero-fade", { y: 24, opacity: 0, duration: 1, stagger: 0.12, delay: 0.7, ease: "power3.out" });
 
       // Parallax suave al salir del hero
       gsap.to(".hero-media", {
         yPercent: 18,
-        scale: 1.05,
         ease: "none",
         scrollTrigger: { trigger: ref.current, start: "top top", end: "bottom top", scrub: true }
       });
@@ -36,18 +35,12 @@ function Hero() {
       <div className="hero-shade" />
 
       <div className="hero-content container">
-        <p className="eyebrow hero-fade">Lamborghini Huracán STO</p>
-        <TextReveal text="Precisión de pista. Alma de calle." className="hero-title" />
-        <p className="hero-sub hero-fade">640 CV, aerodinámica de competición y un diseño que no pide permiso.</p>
+        <TextReveal text="El nuevo Huracán STO." className="hero-title cond" />
+        <p className="hero-sub hero-fade">Donde empieza la pista.</p>
         <div className="btn-row hero-fade">
-          <a href="#modelos" className="btn btn-primary">Descubrir modelos</a>
-          <a href="#servicios" className="btn btn-ghost">Reservar prueba de manejo</a>
+          <a href="#mercedes" className="btn-pill">Más información</a>
         </div>
       </div>
-
-      <a href="#modelos" className="scroll-cue" aria-label="Bajar a modelos">
-        <span />
-      </a>
     </section>
   );
 }
