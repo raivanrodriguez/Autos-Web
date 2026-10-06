@@ -1,77 +1,27 @@
-
 import { useEffect, useMemo, useRef } from "react";
 
-function TextReveal({ text }) {
+// Revela palabra por palabra al montar (para el hero, sin scroll)
+function TextReveal({ text, className = "", as: Tag = "h1", delay = 300 }) {
   const ref = useRef();
-
   const words = useMemo(() => text.split(" "), [text]);
 
   useEffect(() => {
     const elements = ref.current.querySelectorAll(".word");
-
-    elements.forEach((el, i) => {
-      setTimeout(() => {
-        el.classList.add("visible");
-      }, i * 100); 
-    });
-
-  }, []);
+    const timers = [...elements].map((el, i) =>
+      setTimeout(() => el.classList.add("visible"), delay + i * 90)
+    );
+    return () => timers.forEach(clearTimeout);
+  }, [delay]);
 
   return (
-    <h1 ref={ref} className="texto-up">
+    <Tag ref={ref} className={className}>
       {words.map((word, i) => (
-        <span key={i} className="word">
-          {word}&nbsp;
+        <span key={i} className="word-wrapper">
+          <span className="word">{word}&nbsp;</span>
         </span>
       ))}
-    </h1>
+    </Tag>
   );
 }
 
 export default TextReveal;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*import { useMemo } from "react";
-import { useTextReveal } from "../hooks/useTextReveal";
-
-function TextReveal({ text }) {
-
-  // 🔥 dividimos el texto en letras
-  const letters = useMemo(() => text.split(""), [text]);
-
-  // 🔥 activamos GSAP sobre los spans
-  useTextReveal(".char");
-
-  return (
-    <div className="caja-iz">
-      <h1 className="texto-iz">
-        {letters.map((char, i) => (
-          <span key={i} className="char-wrapper">
-            <span className="char">
-            {char === " " ? "\u00A0" : char}
-            </span>
-          </span>
-        ))}
-      </h1>
-    </div>
-  );
-}
-
-export default TextReveal;+*/

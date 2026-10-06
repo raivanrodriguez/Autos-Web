@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -7,25 +7,26 @@ gsap.registerPlugin(ScrollTrigger);
 export const useTextPinting = () => {
   const ref = useRef();
 
-  useEffect(() => {
-    const el = ref.current;
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ref.current.querySelectorAll("span"),
+        { color: "#3a3a3a" },
+        {
+          color: "#ffffff",
+          stagger: 0.1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ref.current,
+            start: "top 80%",
+            end: "bottom 45%",
+            scrub: true
+          }
+        }
+      );
+    }, ref);
 
-    const chars = el.querySelectorAll("span");
-
-    gsap.fromTo(
-      chars,
-      { color: "#444" }, // 🔥 oscuro inicial
-      {
-        color: "#fff", // 🔥 blanco final
-        stagger: 0.08,
-        scrollTrigger: {
-          trigger: el,
-          start: "top 80%",
-          end: "top 30%",
-          scrub: true,
-        },
-      }
-    );
+    return () => ctx.revert();
   }, []);
 
   return ref;

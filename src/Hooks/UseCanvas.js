@@ -1,73 +1,65 @@
 import { useLayoutEffect } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-export function useCanvasAnimation({
-  canvasRef,
-  triggerRef,
-  framePath,
-  frameCount,
-}) {
+gsap.registerPlugin(ScrollTrigger);
+
+export function useCanvasAnimation({ canvasRef, triggerRef, framePath, frameCount }) {
   useLayoutEffect(() => {
     if (!canvasRef.current || !triggerRef.current) return;
 
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d");
+    const state = { frame: 0 };
+
+    const images = Array.from({ length: frameCount }, (_, i) => {
+      const img = new Image();
+      img.src = `${framePath}${String(i + 1).padStart(3, "0")}.png`;
+      return img;
+    });
+
+    // Dibuja el frame cubriendo todo el canvas (como object-fit: cover)
+    const render = () => {
+      const img = images[Math.round(state.frame)];
+      if (!img || !img.complete || !img.naturalWidth) return;
+
+      const scale = Math.max(canvas.width / img.naturalWidth, canvas.height / img.naturalHeight);
+      const w = img.naturalWidth * scale;
+      const h = img.naturalHeight * scale;
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(img, (canvas.width - w) / 2, (canvas.height - h) / 2, w, h);
+    };
+
+    // Ajusta la resolución interna al tamaño real en pantalla
+    const resize = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = canvas.clientWidth * dpr;
+      canvas.height = canvas.clientHeight * dpr;
+      render();
+    };
+
+    images[0].onload = render;
+    resize();
+    window.addEventListener("resize", resize);
+
     const ctx = gsap.context(() => {
-
-      const canvas = canvasRef.current;
-      const context = canvas.getContext("2d");
-
-      const images = [];
-
-      for (let i = 1; i <= frameCount; i++) {
-        const img = new Image();
-        img.src = `${framePath}${String(i).padStart(3, "0")}.png`;
-        images.push(img);
-      }
-
-      const render = (frame) => {
-        const img = images[frame];
-        if (!img || !img.complete) return;
-
-        // 🔥 mantener proporción
-        const canvasRatio = canvas.width / canvas.height;
-        const imgRatio = img.width / img.height;
-
-        let drawWidth, drawHeight;
-
-        if (imgRatio > canvasRatio) {
-          drawHeight = canvas.height;
-          drawWidth = img.width * (canvas.height / img.height);
-        } else {
-          drawWidth = canvas.width;
-          drawHeight = img.height * (canvas.width / img.width);
-        }
-
-        const x = (canvas.width - drawWidth) / 2;
-        const y = (canvas.height - drawHeight) / 2;
-
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        context.drawImage(img, x, y, drawWidth, drawHeight);
-      };
-
-      let obj = { frame: 0 };
-
-      gsap.to(obj, {
-        frame: frameCount - 1,
-        snap: "frame",
-        ease: "none",
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: triggerRef.current,
           start: "top top",
-          end: "+=250",
-          scrub: 1,
-          pin: true,
-        },
-        onUpdate: () => render(Math.floor(obj.frame)),
+          end: "+=180%",
+          scrub: 0.5,
+          pin: true
+        }
       });
 
-      images[0].onload = () => render(0);
-
+      tl.to(state, { frame: frameCount - 1, ease: "none", duration: 1, onUpdate: render }, 0)
+        .fromTo(".sequence-copy-inner", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3 }, 0.15);
     }, triggerRef);
 
-    return () => ctx.revert();
+    return () => {
+      window.removeEventListener("resize", resize);
+      ctx.revert();
+    };
   }, [canvasRef, triggerRef, framePath, frameCount]);
 }

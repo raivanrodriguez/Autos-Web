@@ -1,42 +1,27 @@
 import { useRef } from "react";
 import { useCanvasAnimation } from "../Hooks/UseCanvas";
 
-function CanvasSequence({
-  width = 1920,
-  height = 1080,
-  framePath,
-  frameCount = 30,
-  className = "",
-}) {
-
+// Secuencia de frames controlada por scroll, a pantalla completa, con texto superpuesto
+function CanvasSequence({ framePath, frameCount = 30, eyebrow, title, text, align = "left" }) {
   const canvasRef = useRef();
   const triggerRef = useRef();
 
-  useCanvasAnimation({
-    canvasRef,
-    triggerRef,
-    framePath,
-    frameCount,
-  });
+  useCanvasAnimation({ canvasRef, triggerRef, framePath, frameCount });
 
   return (
-
-    <section
-      ref={triggerRef}
-      
-      className={`frames ${className}`}
-      className={className}
-      
-    >
-
-      <canvas
-        ref={canvasRef}
-        width={width}
-        height={height}
-      />
-
+    <section ref={triggerRef} className={`sequence sequence-${align}`}>
+      <canvas ref={canvasRef} className="sequence-canvas" />
+      <div className="sequence-shade" />
+      {title && (
+        <div className="sequence-copy container">
+          <div className="sequence-copy-inner">
+            {eyebrow && <p className="eyebrow">{eyebrow}</p>}
+            <h2 className="sequence-title">{title}</h2>
+            {text && <p className="sequence-text">{text}</p>}
+          </div>
+        </div>
+      )}
     </section>
-
   );
 }
 

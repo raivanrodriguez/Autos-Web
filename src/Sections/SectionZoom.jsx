@@ -1,33 +1,29 @@
-
-import Zoomin from "../Components/Zoomin";
 import TextUpScroll from "../Components/TextUpScroll";
-import TextUp from "../Components/TextUP";
 
-
+// Banner dividido: imagen con zoom al pasar el mouse + texto
 function SectionZoom() {
   return (
-   <section >
-        
-           
-        <div className="cardiz">
-        <div className="hover-inner">
-            <Zoomin img="https://images.unsplash.com/photo-1553440569-bcc63803a83d"/>
-            
-              <TextUpScroll className="texto-up" text="El Mercedes AMG redefine el rendimiento moderno afsdfas afsdfsf sfsfs sdfsfsf sfsfsd sdfsdf fsfsdvvvfdva vfdvfsvsdvff" />
-            
-       
-        </div></div>
-        <div className="carder">
-              <TextUpScroll className="texto-up" text="El Mercedes AMG redefine el rendimiento moderno afsdfas afsdfsf sfsfs sdfsfsf sfsfsd sdfsdf fsfsd  vsdfvsvsdvff" />
-              
-            </div>
-            <div className="carder hover-card">
-           
-          <img src="https://images.unsplash.com/photo-1583267746897-2cf415887172" />
-          
+    <section className="section split">
+      <div className="container split-inner">
+        <div className="split-media hover-inner">
+          <div className="mask">
+            <img src="/Auto/Lambor/1.png" alt="Lamborghini Huracán STO en estudio" loading="lazy" />
+          </div>
         </div>
-        
-      </section>
+        <div className="split-copy">
+          <p className="eyebrow">Prueba de manejo</p>
+          <TextUpScroll className="section-title" text="Siéntelo antes de decidir." />
+          <p className="lead">
+            Reserva una prueba de manejo en el concesionario más cercano. Te acompañamos en cada
+            kilómetro para que descubras de qué es capaz tu próximo auto.
+          </p>
+          <div className="btn-row">
+            <a href="#servicios" className="btn btn-primary">Reservar ahora</a>
+            <a href="#modelos" className="btn btn-ghost">Ver modelos</a>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 

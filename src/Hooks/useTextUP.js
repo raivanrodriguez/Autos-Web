@@ -4,32 +4,24 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Las palabras entran y salen una tras otra mientras el video queda fijo
 export const useTextUP = () => {
   const ref = useRef();
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-
-      gsap.utils.toArray(".video-text").forEach((el) => {
-        gsap.fromTo(
-          el,
-          {
-            y: 100,
-            opacity: 0,
-          },
-          {
-            y: 0,
-            opacity: 1,
-            scrollTrigger: {
-              trigger: el,
-              start: "top 80%",
-              end: "top 50%",
-              scrub: 1,
-            },
-          }
-        );
+      const items = gsap.utils.toArray(".video-text");
+      const tl = gsap.timeline({
+        scrollTrigger: { trigger: ref.current, start: "top top", end: "bottom bottom", scrub: 1 }
       });
 
+      items.forEach((el, i) => {
+        tl.fromTo(el, { yPercent: 60, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 1 });
+        if (i < items.length - 1) {
+          tl.to(el, { yPercent: -60, opacity: 0, duration: 1 }, "+=0.6");
+        }
+      });
+      tl.to({}, { duration: 0.6 });
     }, ref);
 
     return () => ctx.revert();
