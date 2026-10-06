@@ -2,6 +2,8 @@
 // Solo hace falta definir lo propio de cada auto; lo que falte se completa
 // con textos e imágenes por defecto en buildVehicle().
 
+import { asset } from "../utils/asset";
+
 // Imágenes de ejemplo de Unsplash: reemplázalas por las tuyas cuando quieras
 export const unsplash = (id, w = 1600) =>
   `https://images.unsplash.com/photo-${id}?w=${w}&q=80&auto=format&fit=crop`;
@@ -36,7 +38,7 @@ function buildGle(v) {
   return {
     eyebrow: "Bienvenido a casa.",
     title: `El nuevo ${v.brand} ${v.name}.`,
-    video: "/Videos/video.mp4",
+    video: asset("/Videos/video.mp4"),
     statement: `Un ${v.name} con una apariencia sofisticada, un espacio generoso y detalles elegantes que mejoran cada viaje. Combina un diseño clásico con elementos modernos, en la forma y con la propulsión que elijas. Bienvenido a casa.`,
     crossfade: { title: `El ${short} llega como ${a.label} y ${b.label}.`, a, b },
     chapters: [
@@ -222,7 +224,7 @@ export const vehicles = [
     kicker: "Deportivos",
     teaser: "Precisión de pista, alma de calle.",
     claim: "Donde empieza la pista.",
-    img: "/Auto/Lambor/2.png",
+    img: asset("/Auto/Lambor/2.png"),
     letterbox: true, // la foto trae franjas negras arriba y abajo
     gallery: [unsplash("1580414057403-c5f451f30e1c"), unsplash("1532581140115-3e355d1ed1de")]
   }),
@@ -233,7 +235,7 @@ export const vehicles = [
     kicker: "Hypercars",
     teaser: "1.500 CV de ingeniería sin concesiones.",
     claim: "Más allá del límite.",
-    img: "/Auto/bugati/spoiler 2/frame_011.png",
+    img: asset("/Auto/bugati/spoiler 2/frame_011.png"),
     variants: [
       { label: "Chiron", img: unsplash("1544636331-e26879cd4d9b") },
       { label: "Chiron Sport", img: unsplash("1600712242805-5f78671b24da") }
@@ -247,7 +249,7 @@ export const vehicles = [
     kicker: "Eléctricos",
     teaser: "Eléctrico, versátil y listo para cualquier terreno.",
     claim: "Sin límites de terreno.",
-    img: "/Auto/porshe/frame_010.png",
+    img: asset("/Auto/porshe/frame_010.png"),
     gallery: [unsplash("1503376780353-7e6692767b70"), unsplash("1614162692292-7ac56d7f7f1e")]
   })
 ];

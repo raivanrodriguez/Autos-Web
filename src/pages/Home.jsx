@@ -1,3 +1,4 @@
+import { asset } from "../utils/asset";
 import Hero from "../Components/Hero";
 import Video from "../Components/Video";
 import CanvasSequence from "../Components/CanvaSequence";
@@ -14,21 +15,21 @@ function Home() {
       <Video />
       <SectionPainting />
       <CanvasSequence
-        framePath="/Auto/porshe/frame_"
+        framePath={asset("/Auto/porshe/frame_")}
         frameCount={19}
         eyebrow="Porsche Taycan Cross Turismo"
         title="Sin límites de terreno."
         text="Tracción integral eléctrica para llevar el rendimiento más allá del asfalto."
       />
       <CanvasSequence
-        framePath="/Auto/bugati/spoiler 1/frame_"
+        framePath={asset("/Auto/bugati/spoiler 1/frame_")}
         frameCount={17}
         eyebrow="Bugatti Chiron"
         title="Aerodinámica activa."
         text="El alerón trasero se despliega en milisegundos para mantener el auto pegado al asfalto."
       />
       <CanvasSequence
-        framePath="/Auto/bugati/spoiler 2/frame_"
+        framePath={asset("/Auto/bugati/spoiler 2/frame_")}
         frameCount={22}
         eyebrow="Modo Top Speed"
         title="Freno de aire."

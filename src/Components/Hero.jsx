@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link } from "react-router-dom";
 import TextReveal from "./TextReveal";
+import { asset } from "../utils/asset";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,8 +31,8 @@ function Hero() {
   return (
     <section id="top" ref={ref} className="hero">
       <div className="hero-media">
-        <img src="/Auto/Lambor/1.png" className="hero-img" alt="Lamborghini Huracán STO de frente en un estudio" />
-        <img src="/Auto/Lambor/2.png" className="hero-img hero-img-on" alt="" aria-hidden="true" />
+        <img src={asset("/Auto/Lambor/1.png")} className="hero-img" alt="Lamborghini Huracán STO de frente en un estudio" />
+        <img src={asset("/Auto/Lambor/2.png")} className="hero-img hero-img-on" alt="" aria-hidden="true" />
       </div>
       <div className="hero-shade" />
 
