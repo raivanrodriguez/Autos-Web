@@ -1,0 +1,712 @@
+body {
+  margin: 0;
+  background: black;
+  color: white;
+ 
+  font-family: "CorpoA", Title, sans-serif;
+  
+  
+  
+
+}
+.white-b{
+  background-color: white;
+}
+
+
+.spacer {
+  height: 50vh;
+  
+}
+@font-face {
+    font-family: "CorpoA";
+    src: url("https://db.onlinewebfonts.com/t/c043c152021ef71e03dc447f99297802.eot");
+    src: url("https://db.onlinewebfonts.com/t/c043c152021ef71e03dc447f99297802.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/c043c152021ef71e03dc447f99297802.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/c043c152021ef71e03dc447f99297802.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/c043c152021ef71e03dc447f99297802.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/c043c152021ef71e03dc447f99297802.svg#CorpoA")format("svg");
+}
+
+.video-hero {
+  position: relative;
+  height: 300vh;
+}
+
+.video-bg {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  filter: brightness(0.6);
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.video-text {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  opacity: 0;
+  transform: scaleY(1.8);
+  
+  font-weight: 400;
+  
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+/* =========================
+   🧱 CARDS
+========================= */
+
+
+
+
+
+/* TELÓN SIMPLE */
+
+.caja-iz{
+  width: 350px;
+  height: 250px;
+  margin-top: 100px;
+}
+.texto-iz{
+  overflow: hidden;
+  font-family: "CorpoA",sans-serif;
+  font-weight: 400;
+  transform: scaleY(1.6);
+  
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s;
+}
+.char {
+  display: inline-block;
+  transform: translateY(1.3em);
+  opacity: 0;
+  
+
+  vertical-align: bottom;
+}
+.char-wrapper {
+  display: inline-block;
+  overflow: hidden; /* 🔥 CLAVE */
+}
+.cardiz {
+  
+  height: 30vh;
+  
+  
+  padding-left: 10%;
+ 
+  align-items: start;
+  
+
+}
+.cardiz img{  width: 35%;
+  
+  object-fit: cover;
+   display: flex;
+  gap: 400px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 60px;
+
+}
+.carder{
+  
+  height: 70vh;
+  display: flex;
+  gap: 400px;
+  padding-right: 10%;
+  margin-left: 60%;
+  justify-content: end;
+  align-items:end;
+
+}
+.carder img{  width: 400px;
+  height: 75%;
+  object-fit: cover;
+   display: flex;
+  padding-left: 80%;
+  
+
+}
+/* =========================
+   🔍 HOVER
+========================= */
+.hover-inner .mask {
+  overflow: hidden;
+  display: flex;
+}
+
+.hover-inner img {
+  transition: transform 0.4s;
+}
+
+.hover-inner:hover img {
+  transform: scale(1.3);
+}
+
+.hover-card {
+  transition: transform 0.4s;
+}
+
+.hover-card:hover {
+  transform: scale(1.1);
+}
+
+/* =========================
+   🧊 PARALLAX
+========================= */
+.card img {
+  width: 110%;
+  height: 110%;
+  object-fit: cover;
+}
+
+/* =========================
+   🎯 SCALE
+========================= */
+.scale-fade {
+  opacity: 0;
+}
+
+/* =========================
+   🚗 CANVAS
+========================= */
+.canvas-section {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas {
+  width: 80%;
+  
+}
+
+/* =========================
+   🎮 SLIDER
+========================= */
+.slider {
+  position: absolute;
+  bottom: 60px;
+  width: 300px;
+  height: 4px;
+  background: white;
+}
+
+.handle {
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: -8px;
+  left: 0;
+  cursor: pointer;
+}
+
+/* =========================
+   🔝 NAVBAR
+========================= */
+/* =========================
+   NAVBAR (MÁSCARA)
+========================= */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(10px);
+
+  overflow: hidden;
+  z-index: 9999;
+
+  transition: height 0.7s ease;
+}
+
+/* 🔥 CRECE */
+.navbar:hover {
+  height: 135px;
+}
+
+
+/* =========================
+   CONTENIDO
+========================= */
+.nav-inner {
+   transform: translateY(-10px); /* 👈 empieza escondido arriba */
+
+  transition: transform 0.7s ease;
+}
+
+/* =========================
+   LISTA (🔥 CLAVE)
+========================= */
+.nav-inner ul {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  font-size: 25px;
+  /* 🔥 ESTO ES LO IMPORTANTE */
+  margin-top: 100px; /* 👈 EMPUJA TODO HACIA ABAJO */
+
+  list-style: none;
+  padding: 0;
+}
+
+/* =========================
+   TELÓN POR PALABRA
+========================= */
+.word3-wrapper {
+  overflow: hidden;
+  display: inline-block;
+}
+
+.word3 {
+  display: inline-block;
+  transform: translateY(-100%);
+  transition: transform 0.7s cubic-bezier(.35, .46, .58, 1);
+}
+
+/* 🔥 REVELADO */
+.navbar:hover .word3 {
+  transform: translateY(0);
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  width: 0%;
+  height: 2px;
+  background: white;
+
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}.nav-link {
+  display: inline-block; /* 🔥 CLAVE */
+  position: relative;
+  text-decoration: none;
+  color: white;
+  padding-bottom: 5px;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+
+/* =========================
+   🖼 HERO
+========================= */
+.hero-image {
+  position: relative;
+  height: 100vh;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  top: 0;
+}
+
+.hero-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -25%);
+  
+  
+  transform: scaleY(1.1);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+/* =========================
+   🎬 SPLIT REVEAL (FIX TOTAL)
+========================= */
+
+.split-reveal {
+  display: flex;
+  height: 200vh;
+  background: black;
+}
+
+/* TEXTO */
+
+
+.text-block {
+  
+  margin: 60px;
+  font-size: 2.5rem;;
+  opacity: 0.3;
+  
+  transition: all 0.3s;
+  font-weight: 400;
+  transform: scaleY(1.6);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+/* IMÁGENES */
+
+/* CONTENEDOR */
+.img {
+  position: absolute;
+  width: 80%;
+  max-width: 600px;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+
+  top: 30%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+}
+
+/* 🔥 CAPA ANIMADA (CLAVE) */
+.reveal {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* IMAGEN */
+.reveal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 🔥 DIRECCIONES CORRECTAS */
+.img1 .reveal { transform: translateY(-20%); }   /* sube */
+.img2 .reveal { transform: translateY(100%); }  /* baja */
+.img3 .reveal { transform: translateY(-100%); }
+.img4 .reveal { transform: translateY(100%); }
+
+
+.frames-scroll {
+  object-fit: contain;
+  height: 100vh;
+  display: flex;
+  
+  align-items: start;
+  margin-left: 20%;
+  
+}
+
+.frames-scroll canvas {
+  margin-top: 10%;
+ 
+  width: 20%;
+}
+
+.hover-change {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hover-box {
+  position: relative;
+  width: 600px;
+  height: 300px;
+  overflow: hidden;
+}
+
+.hover-box img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.5s ease;
+}
+
+/* imagen encima oculta */
+.img-hover {
+  opacity: 0;
+}
+
+/* al hover cambia */
+.hover-box:hover .img-hover {
+  opacity: 1;
+}
+
+.frames-scroll2 {
+  object-fit: contain;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+  
+}
+
+.frames-scroll2 canvas {
+  margin-top: 10%;
+ 
+  width: 50%;
+}
+
+.hover-sequence {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hover-seq-box {
+  height: 100vh;
+  display: flex;
+  position: relative;
+  width: 500px;
+  height: 300px;
+  overflow: hidden;
+  align-items: center;
+}
+
+.seq {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* primera visible */
+.img11 {
+  opacity: 1;
+}
+
+.frames {
+   object-fit: contain;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.frames canvas {
+  margin-top: 10%;
+ 
+  width: 50%;
+}
+
+.texto-up {
+  flex: 1;
+  font-family: "CorpoA", sans-serif;
+  line-height: 1.1;
+  font-weight: 400;
+  transform: scaleY(1.2);
+  letter-spacing: -0.04em;
+  max-width: 35ch;
+  
+  
+  
+}
+.texto-up-b {
+  color: black;
+  flex: 1;
+  font-family: "CorpoA", sans-serif;
+  line-height: 1.1;
+  font-weight: 400;
+  transform: scaleY(1.2);
+  letter-spacing: -0.04em;
+  max-width: 35ch;
+  
+  
+  
+}
+
+
+
+/* PALABRA */
+.word {
+  display: inline-block;
+  
+  transform: translateY(1.1em);
+  
+  
+  
+
+  /* 🔥 estado inicial */
+  transition:
+    transform 0.3s cubic-bezier(0.46, 0, 1, 0.5),
+    opacity 1s;
+}
+
+/* 🔥 ESTADO FINAL (CLAVE) */
+.word.visible {
+  display: inline-block;
+  transform: translateY(0);
+  opacity: 1;
+  
+
+  transition:
+    transform 1s cubic-bezier(0, 1, 0.45, 1),
+    opacity 1s;
+}
+
+.word-wrapper {
+  overflow: hidden;
+
+  display: inline-block;
+
+  vertical-align: bottom;
+}
+/*Telon*/
+
+
+
+/* section-Mer*/
+.story-section {
+  padding: 120px 6%;
+}
+
+/* FILA */
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 20px; /* 🔥 ESPACIO NEGRO ENTRE IMÁGENES */
+}
+
+/* COLUMNAS */
+.col {
+  margin-top: 100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: start;
+}
+
+/* OFFSET (BAJAR UNA IMAGEN) */
+.offset {
+  margin-top: 500px; /* 🔥 solo baja una */
+}
+
+/* CARD */
+.card {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+/* TELÓN */
+.reveal-mask {
+  clip-path: inset(100% 0% 0% 0%);
+}
+
+.reveal-mask img {
+  width: 80%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.left {
+  width: 85%;
+  height: 55%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 150px;
+  
+}
+.right {
+  width: 120%;
+  position: relative;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+}
+
+
+/*textopintado*/
+.painting-section {
+  padding: 120px 8%;
+}
+
+/* FILA */
+.painting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 80px;
+}
+
+/* IMAGEN */
+.painting-img {
+  width: 50%;
+}
+
+.painting-img img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+}
+
+/* TEXTO */
+.painting-text {
+  width: 40%;
+}
+
+/* EFECTO TEXTO */
+.text-pinting {
+  font-size: 30px;
+  line-height: 1.6;
+}
+
+.text-pinting span {
+  color: #444; /* oscuro inicial */
+}
+.painting-img-izq {
+  margin-top: 400px;
+  width: 50%;
+}
+
+.painting-img-izq img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+.painting-img-der {
+  margin-top: -500px;
+  width: 100%;
+}
+
+.painting-img-der img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
