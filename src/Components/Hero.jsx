@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Link } from "react-router-dom";
 import TextReveal from "./TextReveal";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -38,7 +39,7 @@ function Hero() {
         <TextReveal text="El nuevo Huracán STO." className="hero-title cond" />
         <p className="hero-sub hero-fade">Donde empieza la pista.</p>
         <div className="btn-row hero-fade">
-          <a href="#mercedes" className="btn-pill">Más información</a>
+          <Link to="/vehiculos/lamborghini-huracan-sto" className="btn-pill">Más información</Link>
         </div>
       </div>
     </section>

@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { models } from "../data/models";
+import { Link, useLocation } from "react-router-dom";
+import { vehicles } from "../data/vehicles";
 
 const links = [
-  { label: "Modelos", href: "#modelos", mega: true },
-  { label: "Eléctricos", href: "#modelos" },
-  { label: "AMG", href: "#mercedes" },
-  { label: "Diseño", href: "#filosofia" },
-  { label: "Innovación", href: "#hitos" },
-  { label: "Exclusivo", href: "#contacto" }
+  { label: "Vehículos", href: "/#mercedes", mega: true },
+  { label: "Eléctricos", href: "/vehiculos/porsche-taycan" },
+  { label: "AMG", href: "/vehiculos/mercedes-amg-gt" },
+  { label: "Diseño", href: "/#filosofia" },
+  { label: "Innovación", href: "/#hitos" },
+  { label: "Exclusivo", href: "/vehiculos/bugatti-chiron" }
 ];
 
 function Logo({ className = "" }) {
@@ -24,6 +25,8 @@ export default function Header() {
   const [hover, setHover] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { pathname } = useLocation();
+  const light = pathname.startsWith("/vehiculos");
 
   // Arriba del todo se ve la barra completa; al bajar queda solo el logo
   useEffect(() => {
@@ -49,7 +52,8 @@ export default function Header() {
     expanded && "is-expanded",
     scrolled && "is-scrolled",
     megaOpen && "is-mega",
-    menuOpen && "is-menu"
+    menuOpen && "is-menu",
+    light && "is-light"
   ].filter(Boolean).join(" ");
 
   return (
@@ -64,12 +68,12 @@ export default function Header() {
           <button className="lang-btn">EN</button>
         </div>
 
-        <a href="#top" className="logo" onClick={closeAll} aria-label="Autos Web, inicio">
+        <Link to="/" className="logo" onClick={closeAll} aria-label="Autos Web, inicio">
           <Logo />
-        </a>
+        </Link>
 
         <div className="header-right">
-          <a href="#modelos" className="search-link">Buscar</a>
+          <Link to="/#mercedes" className="search-link">Buscar</Link>
           <button
             className="burger"
             aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
@@ -86,8 +90,8 @@ export default function Header() {
         <ul>
           {links.map((l, i) => (
             <li key={l.label} className="word3-wrapper">
-              <a
-                href={l.href}
+              <Link
+                to={l.href}
                 className={`nav-link word3 ${l.mega && megaOpen ? "is-active" : ""}`}
                 style={{ transitionDelay: expanded ? `${i * 0.04}s` : "0s" }}
                 onMouseEnter={() => setMegaOpen(!!l.mega)}
@@ -96,7 +100,7 @@ export default function Header() {
                 tabIndex={expanded ? 0 : -1}
               >
                 {l.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -105,10 +109,10 @@ export default function Header() {
       {/* Mega menú de modelos */}
       <div className="mega" aria-hidden={!megaOpen}>
         <div className="mega-inner">
-          {models.map((m, i) => (
-            <a
-              key={m.id}
-              href="#modelos"
+          {vehicles.map((m, i) => (
+            <Link
+              key={m.slug}
+              to={`/vehiculos/${m.slug}`}
               className="mega-card"
               style={{ "--i": i }}
               onClick={closeAll}
@@ -119,7 +123,7 @@ export default function Header() {
               </div>
               <span className="mega-brand">{m.brand}</span>
               <span className="mega-name">{m.name}</span>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
@@ -129,15 +133,15 @@ export default function Header() {
         <ul>
           {links.map((l, i) => (
             <li key={l.label} className="word3-wrapper">
-              <a
-                href={l.href}
+              <Link
+                to={l.href}
                 className="word3"
                 style={{ transitionDelay: menuOpen ? `${0.1 + i * 0.06}s` : "0s" }}
                 onClick={closeAll}
                 tabIndex={menuOpen ? 0 : -1}
               >
                 {l.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

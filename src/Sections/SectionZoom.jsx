@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import TextUpScroll from "../Components/TextUpScroll";
 
 const unsplash = (id) => `https://images.unsplash.com/photo-${id}?w=1400&q=80&auto=format&fit=crop`;
@@ -11,13 +12,13 @@ function SectionZoom() {
           <p className="eyebrow">Hitos</p>
           <TextUpScroll className="milestone-title cond" text="Recorre con nosotros 140 años de historia." />
           <p className="milestone-kicker">140 años. 140 lugares.</p>
-          <a href="#modelos" className="btn-pill">Explorar más</a>
+          <Link to="/vehiculos/bugatti-chiron" className="btn-pill">Explorar más</Link>
         </div>
-        <div className="milestone-media hover-inner hover-card">
+        <Link to="/vehiculos/bugatti-chiron" className="milestone-media hover-inner hover-card">
           <div className="mask">
             <img src={unsplash("1544636331-e26879cd4d9b")} alt="Bugatti Chiron plateado de frente" loading="lazy" />
           </div>
-        </div>
+        </Link>
       </div>
     </section>
   );

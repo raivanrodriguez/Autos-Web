@@ -4,16 +4,16 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export const useTextPinting = () => {
+export const useTextPinting = (from = "#3a3a3a", to = "#ffffff") => {
   const ref = useRef();
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         ref.current.querySelectorAll("span"),
-        { color: "#3a3a3a" },
+        { color: from },
         {
-          color: "#ffffff",
+          color: to,
           stagger: 0.1,
           ease: "none",
           scrollTrigger: {
@@ -27,7 +27,7 @@ export const useTextPinting = () => {
     }, ref);
 
     return () => ctx.revert();
-  }, []);
+  }, [from, to]);
 
   return ref;
 };
