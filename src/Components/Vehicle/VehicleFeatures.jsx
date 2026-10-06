@@ -19,9 +19,9 @@ function Feature({ title, text, img }) {
 }
 
 // Encabezado + tarjetas escalonadas; la columna derecha se mueve a otra velocidad (parallax)
-function VehicleFeatures({ title, text, items }) {
+function VehicleFeatures({ title, text, items, dark = false }) {
   const ref = useRef();
-  useTelonReveal(".vh-reveal");
+  useTelonReveal(".vh-reveal", ref);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -37,7 +37,7 @@ function VehicleFeatures({ title, text, items }) {
   const [a, b, c, d] = items;
 
   return (
-    <section ref={ref} className="container vh-features">
+    <section ref={ref} className={`container vh-features ${dark ? "is-dark" : ""}`}>
       <div className="vh-features-left">
         <div className="vh-features-head">
           <TextUpScroll className="vh-features-title cond" text={title} />

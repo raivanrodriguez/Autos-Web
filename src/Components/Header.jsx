@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { vehicles } from "../data/vehicles";
+import { getVehicle, vehicles } from "../data/vehicles";
 
 const links = [
   { label: "Vehículos", href: "/#mercedes", mega: true },
@@ -26,7 +26,8 @@ export default function Header() {
   const [megaOpen, setMegaOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { pathname } = useLocation();
-  const light = pathname.startsWith("/vehiculos");
+  // Header claro solo en las páginas de vehículo con plantilla "maybach" (fondo blanco)
+  const light = getVehicle(pathname.split("/vehiculos/")[1])?.template === "maybach";
 
   // Arriba del todo se ve la barra completa; al bajar queda solo el logo
   useEffect(() => {

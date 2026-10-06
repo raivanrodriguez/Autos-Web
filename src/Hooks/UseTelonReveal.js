@@ -4,11 +4,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Telón: la imagen se descubre de abajo hacia arriba al entrar en pantalla
-export function useTelonReveal(selector) {
+// Telón: la imagen se descubre de abajo hacia arriba al entrar en pantalla.
+// scopeRef (opcional) limita la búsqueda a una sección, para poder usarlo varias veces en la misma página.
+export function useTelonReveal(selector, scopeRef) {
   useLayoutEffect(() => {
+    const root = scopeRef?.current ?? document;
+
     const ctx = gsap.context(() => {
-      gsap.utils.toArray(selector).forEach((el) => {
+      root.querySelectorAll(selector).forEach((el) => {
         const mask = el.querySelector(".reveal-mask");
         const img = mask.querySelector("img");
 
@@ -21,5 +24,5 @@ export function useTelonReveal(selector) {
     });
 
     return () => ctx.revert();
-  }, [selector]);
+  }, [selector, scopeRef]);
 }
